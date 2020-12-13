@@ -1,10 +1,11 @@
 import React from 'react';
-import './index.css';
+
+import styles from './index.module.scss';
 
 const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className={styles.app}>
+      <header>
         <h1>hola</h1>
       </header>
     </div>
