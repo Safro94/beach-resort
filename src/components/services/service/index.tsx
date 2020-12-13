@@ -4,11 +4,11 @@ import { IService } from '../index';
 
 import styles from './index.module.scss';
 
-interface ServiceProps {
+interface IServiceProps {
   service: IService
 }
 
-const Service: FC<ServiceProps> = ({ service: { icon, title, info } }) => {
+const Service: FC<IServiceProps> = ({ service: { icon, title, info } }) => {
   return (
     <article>
       <span className={styles.icon}>{icon}</span>

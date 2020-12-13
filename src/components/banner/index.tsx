@@ -2,12 +2,12 @@ import React, { FC } from 'react'
 
 import styles from './index.module.scss';
 
-interface BannerProps {
+interface IBannerProps {
   title?: string,
   subtitle?: string
 }
 
-const Banner: FC<BannerProps> = ({ children, title, subtitle }) => {
+const Banner: FC<IBannerProps> = ({ children, title, subtitle }) => {
   return (
     <div className={styles.root}>
       <h1 className={styles.title}>{title}</h1>

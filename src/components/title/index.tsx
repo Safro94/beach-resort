@@ -2,11 +2,11 @@ import React, { FC } from 'react'
 
 import styles from './index.module.scss';
 
-interface TitleProps {
+interface ITitleProps {
   title: string
 }
 
-const Title: FC<TitleProps> = ({ title }) => {
+const Title: FC<ITitleProps> = ({ title }) => {
   return (
     <div className={styles.container}>
       <h4 className={styles.title}>{title}</h4>

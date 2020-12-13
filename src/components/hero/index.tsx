@@ -2,11 +2,11 @@ import React, { FC } from 'react'
 
 import styles from './index.module.scss';
 
-interface HeroProps {
+interface IHeroProps {
   customStyles?: string
 }
 
-const Hero: FC<HeroProps> = ({ children, customStyles }) => {
+const Hero: FC<IHeroProps> = ({ children, customStyles }) => {
   return (
     <header className={customStyles ? `${styles.hero} ${customStyles}` : styles.hero}>
       {children}
