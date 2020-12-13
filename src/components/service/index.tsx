@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import { IService } from '../index';
+import { IService } from '../../containers/services';
 
 import styles from './index.module.scss';
 

@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { FaCocktail, FaHiking, FaShuttleVan, FaBeer } from 'react-icons/fa';
 
-import Title from '../title';
-import Service from './service';
+import Title from '../../components/title';
+import Service from '../../components/service';
 
 import styles from './index.module.scss';
 

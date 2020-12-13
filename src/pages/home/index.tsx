@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Hero from '../../components/hero';
 import Banner from '../../components/banner';
-import Services from '../../components/services';
+import ServicesContainer from '../../containers/services';
 
 import { ROOMS } from '../../utils/routes';
 
@@ -19,7 +19,7 @@ const Home: FC = () => {
 				</Link>
 				</Banner>
 			</Hero>
-			<Services />
+			<ServicesContainer />
 		</>
 	);
 };
