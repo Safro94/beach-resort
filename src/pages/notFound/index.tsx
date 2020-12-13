@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 
+import Hero from '../../components/hero';
+
 const NotFound: FC = () => {
-	return <div>NotFound</div>;
+	return <Hero />
 };
 
 export default NotFound;

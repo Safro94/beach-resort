@@ -10,7 +10,6 @@ import logo from '../../assets/images/logo.svg'
 const NavBar: FC = () => {
   const [isOpen, setIsOpen] = useState<Boolean>(false);
 
-
   const handleToogle = (): void => {
     setIsOpen(prevState => !prevState);
   }
