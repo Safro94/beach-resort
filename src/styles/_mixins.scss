@@ -1,0 +1,37 @@
+@import 'breakpoints.scss';
+
+@mixin mq-sm {
+	@media (min-width: map-get($breakpoints, 'sm')) {
+		@content;
+	}
+}
+
+@mixin mq-md {
+	@media (min-width: map-get($breakpoints, 'md')) {
+		@content;
+	}
+}
+
+@mixin mq-lg {
+	@media (min-width: map-get($breakpoints, 'lg')) {
+		@content;
+	}
+}
+
+@mixin primary-button {
+	display: inline-block;
+	text-decoration: none;
+	letter-spacing: $mainSpacing;
+	color: $mainBlack;
+	background: $primaryColor;
+	padding: 0.4rem 0.9rem;
+	border: 3px solid $primaryColor;
+	transition: $mainTransition;
+	text-transform: uppercase;
+	cursor: pointer;
+
+	&:hover {
+		background: transparent;
+		color: $primaryColor;
+	}
+}

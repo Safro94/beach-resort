@@ -1,0 +1,47 @@
+@import '../../styles/index.scss';
+
+.root {
+	display: inline-block;
+	background: rgba(0, 0, 0, 0.5);
+	color: $mainWhite;
+	padding: 2rem 1rem;
+	text-align: center;
+	text-transform: capitalize;
+	letter-spacing: $mainSpacing;
+
+	.title {
+		font-size: 2.5rem;
+	}
+
+	.container {
+		width: 10rem;
+		height: 5px;
+		background: $primaryColor;
+		margin: 1.7rem auto;
+	}
+
+	.subtitle {
+		font-size: 1.2rem;
+		margin-bottom: 2rem;
+	}
+}
+
+@include mq-sm {
+	.root {
+		padding: 2rem 3rem;
+
+		.title {
+			font-size: 3rem;
+		}
+	}
+}
+
+@include mq-md {
+	.root {
+		padding: 2rem 6rem;
+
+		.title {
+			font-size: 4rem;
+		}
+	}
+}

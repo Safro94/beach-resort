@@ -6,9 +6,9 @@ interface HeroProps {
   customStyles?: string
 }
 
-const Hero: FC<HeroProps> = ({ children, customStyles = styles.hero }) => {
+const Hero: FC<HeroProps> = ({ children, customStyles }) => {
   return (
-    <header className={customStyles}>
+    <header className={customStyles ? `${styles.hero} ${customStyles}` : styles.hero}>
       {children}
     </header>
   )
