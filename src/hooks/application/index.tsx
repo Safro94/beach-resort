@@ -1,63 +1,55 @@
-import React, {
-  createContext,
-  useContext,
-  useReducer,
-  useCallback,
-} from 'react';
+import React, { createContext, useContext,useState, useEffect } from 'react';
+import RoomsService from '../../services/rooms';
 
-const SET_ROOMS = 'SET_ROOMS';
-const SET_SORTED_ROOMS = 'SET_SORTED_ROOMS';
-const SET_FEATURED_ROOMS = 'SET_FEATURED_ROOMS';
-const SET_LOADING = 'SET_LOADING';
-
-interface IRoom {
-  id: number,
-  price: number,
+export interface IRoom {
+  name: string;
+  slug: string;
+  type: string;
+  price: number;
+  size: number;
+  capacity: number;
+  pets: boolean;
+  breakfast: boolean;
+  featured: boolean;
+  description: string;
+  extras: string[];
+  images: string[];
+  id: string,
 }
 
-interface IRoomContext {
+type RoomContextType = {
   rooms: IRoom[],
   sortedRooms: IRoom[],
   featuredRooms: IRoom[],
-  loading: Boolean
+  loading: boolean
 }
 
-const ApplicationContext = createContext<IRoomContext>({ rooms: [], sortedRooms: [], featuredRooms: [], loading: true });
+const ApplicationContext = createContext<RoomContextType>({ rooms: [], sortedRooms: [], featuredRooms: [], loading: true });
 
 const useApplication = () => {
-  const [application, setApplication] = useContext<IRoomContext>(ApplicationContext);
+  const [application, setApplication] = useContext<RoomContextType>(ApplicationContext);
 
-  const setSearchTerm = useCallback(
-    term => setApplication({ type: SET_SEARCH_TERM, value: term }),
-    [setApplication]
-  );
-
-  const setResult = useCallback(
-    result => setApplication({ type: SET_RESULT, value: result }),
-    [setApplication]
-  );
-
-  return { ...application, setSearchTerm, setResult };
+  return { ...application, setApplication };
 };
 
-const ApplicationProvider = ({ application = {}, children }) => {
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case SET_ROOMS:
-        return { ...state, rooms: action.value };
-      case SET_SORTED_ROOMS:
-        return { ...state, sortedRooms: action.value };
-      case SET_FEATURED_ROOMS:
-        return { ...state, featuredRooms: action.value };
-      case SET_LOADING:
-        return { ...state, loading: action.value };
-      default:
-        return state;
-    }
-  };
+const ApplicationProvider: React.FC = ({ children }) => {
+  const [roomsState, setRoomsState] = useState<RoomContextType>({
+    rooms: [], sortedRooms: [], featuredRooms: [], loading: true
+  });
+
+  useEffect(() => {
+    const data = RoomsService.getData();
+    
+    setRoomsState({
+      rooms: data,
+      featuredRooms: data.filter(room => room.featured),
+      sortedRooms: data,
+      loading: false
+    })
+  }, [])
 
   return (
-    <ApplicationContext.Provider value={useReducer(reducer, application)}>
+    <ApplicationContext.Provider value={{ ...roomsState }}>
       {children}
     </ApplicationContext.Provider>
   );
