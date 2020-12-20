@@ -29,7 +29,9 @@ const ApplicationContext = createContext<RoomContextType>({ rooms: [], sortedRoo
 const useApplication = () => {
   const application = useContext<RoomContextType>(ApplicationContext);
 
-  return { ...application };
+  const getRoom = (slug: string) => application.rooms.find(item => item.slug === slug);
+
+  return { ...application, getRoom };
 };
 
 const ApplicationProvider: React.FC = ({ children }) => {
