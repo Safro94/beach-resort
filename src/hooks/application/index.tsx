@@ -1,4 +1,4 @@
-import React, { createContext, useContext,useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import RoomsService from '../../services/rooms';
 
 export interface IRoom {
@@ -27,9 +27,9 @@ type RoomContextType = {
 const ApplicationContext = createContext<RoomContextType>({ rooms: [], sortedRooms: [], featuredRooms: [], loading: true });
 
 const useApplication = () => {
-  const [application, setApplication] = useContext<RoomContextType>(ApplicationContext);
+  const application = useContext<RoomContextType>(ApplicationContext);
 
-  return { ...application, setApplication };
+  return { ...application };
 };
 
 const ApplicationProvider: React.FC = ({ children }) => {
@@ -39,7 +39,7 @@ const ApplicationProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     const data = RoomsService.getData();
-    
+
     setRoomsState({
       rooms: data,
       featuredRooms: data.filter(room => room.featured),
