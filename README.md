@@ -28,10 +28,10 @@ This project was built just to practice Typescript. This is a CRA(create-react-a
 
 ### Clone
 
-You can clone the repo using this url: https://github.com/Safro94/resort.git
+You can clone the repo using this url: https://github.com/Safro94/beach-resort.git
 
 ```
-git clone https://github.com/Safro94/resort.git
+git clone https://github.com/Safro94/beach-resort.git
 ```
 
 ### Install dependencies
