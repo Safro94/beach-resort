@@ -1,0 +1,11 @@
+@import '../../../styles/index.scss';
+
+.container {
+	text-transform: capitalize;
+
+	.label {
+		display: block;
+		letter-spacing: $mainSpacing;
+		margin-bottom: 0.5rem;
+	}
+}

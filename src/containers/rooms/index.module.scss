@@ -1,0 +1,32 @@
+@import '../../styles/index.scss';
+
+.text {
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.roomsContainer {
+	padding: 5rem 0;
+
+	.rooms {
+		width: 80vw;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+		grid-row-gap: 2rem;
+		grid-column-gap: 30px;
+	}
+}
+
+@include mq-sm {
+	.rooms {
+		width: 90vw;
+	}
+}
+
+@include mq-md {
+	.rooms {
+		width: 95vw;
+		max-width: 1170px;
+	}
+}

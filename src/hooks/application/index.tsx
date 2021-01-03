@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, Dispatch, SetStateAction } from 'react';
 import RoomsService from '../../services/rooms';
 
 export interface IRoom {
+  [key: string]: string | number | boolean | string[];
   name: string;
   slug: string;
   type: string;
@@ -17,27 +18,34 @@ export interface IRoom {
   id: string,
 }
 
-type RoomContextType = {
+type RoomType = {
   rooms: IRoom[],
-  sortedRooms: IRoom[],
   featuredRooms: IRoom[],
   loading: boolean
 }
 
-const ApplicationContext = createContext<RoomContextType>({ rooms: [], sortedRooms: [], featuredRooms: [], loading: true });
+type RoomContextType = {
+  roomsState: RoomType
+  sortedRooms: IRoom[],
+  setSortedRooms: Dispatch<SetStateAction<IRoom[]>>,
+}
+
+const ApplicationContext = createContext<RoomContextType>({ roomsState: { rooms: [], featuredRooms: [], loading: true }, sortedRooms: [], setSortedRooms: () => { } });
 
 const useApplication = () => {
-  const application = useContext<RoomContextType>(ApplicationContext);
+  const { roomsState, sortedRooms, setSortedRooms } = useContext<RoomContextType>(ApplicationContext);
 
-  const getRoom = (slug: string) => application.rooms.find(item => item.slug === slug);
+  const getRoom = (slug: string) => roomsState.rooms.find(item => item.slug === slug);
 
-  return { ...application, getRoom };
+  return { ...roomsState, getRoom, sortedRooms, setSortedRooms };
 };
 
 const ApplicationProvider: React.FC = ({ children }) => {
-  const [roomsState, setRoomsState] = useState<RoomContextType>({
-    rooms: [], sortedRooms: [], featuredRooms: [], loading: true
+  const [roomsState, setRoomsState] = useState<RoomType>({
+    rooms: [], featuredRooms: [], loading: true
   });
+
+  const [sortedRooms, setSortedRooms] = useState<IRoom[]>([]);
 
   useEffect(() => {
     const data = RoomsService.getData();
@@ -45,13 +53,14 @@ const ApplicationProvider: React.FC = ({ children }) => {
     setRoomsState({
       rooms: data,
       featuredRooms: data.filter(room => room.featured),
-      sortedRooms: data,
       loading: false
     })
+
+    setSortedRooms(data);
   }, [])
 
   return (
-    <ApplicationContext.Provider value={{ ...roomsState }}>
+    <ApplicationContext.Provider value={{ roomsState, sortedRooms, setSortedRooms }}>
       {children}
     </ApplicationContext.Provider>
   );
