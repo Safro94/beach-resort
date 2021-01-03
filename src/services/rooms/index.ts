@@ -5,7 +5,6 @@ class RoomsService {
     static getData() {
         return mapData(data);
     }
-
 }
 
 export default RoomsService;
