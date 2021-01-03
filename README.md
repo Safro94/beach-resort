@@ -48,4 +48,10 @@ Run
 npm install
 ```
 
+Run
+
+```
+npm start
+```
+
 the app should be running on http://localhost:3000
